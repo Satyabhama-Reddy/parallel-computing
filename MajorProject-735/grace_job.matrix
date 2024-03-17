@@ -1,0 +1,53 @@
+#!/bin/bash
+##ENVIRONMENT SETTINGS; CHANGE WITH CAUTION
+#SBATCH --export=NONE                #Do not propagate environment
+#SBATCH --get-user-env=L             #Replicate login environment
+#
+##NECESSARY JOB SPECIFICATIONS
+#SBATCH --job-name=JobExample2       #Set the job name to "JobExample2"
+#SBATCH --time=0:30:00               #Set the wall clock limit to 6hr and 30min
+#SBATCH --nodes=1                    #Request 1 node
+#SBATCH --ntasks-per-node=48          #Request 8 tasks/cores per node
+#SBATCH --mem=8G                     #Request 8GB per node 
+#SBATCH --output=output.%j      #Send stdout/err to "output.[jobID]" 
+#
+##OPTIONAL JOB SPECIFICATIONS
+##SBATCH --mail-type=ALL              #Send email on all job events
+##SBATCH --mail-user=email_address    #Send all emails to email_address 
+#
+##First Executable Line
+#
+module load intel         # load Intel software stack 
+#
+icc -qopenmp -o matrix.exe matrix.cpp
+##
+
+./matrix.exe 4 3 4
+./matrix.exe 5 3 4
+./matrix.exe 6 3 4
+./matrix.exe 7 3 4
+./matrix.exe 8 3 4
+./matrix.exe 9 3 4
+./matrix.exe 10 3 4
+./matrix.exe 11 3 4
+
+./matrix.exe 10 2 4
+./matrix.exe 10 3 4
+./matrix.exe 10 4 4
+./matrix.exe 10 5 4
+./matrix.exe 10 6 4
+./matrix.exe 10 7 4
+./matrix.exe 10 8 4
+./matrix.exe 10 9 4
+
+./matrix.exe 10 3 1
+./matrix.exe 10 3 2
+./matrix.exe 10 3 3
+./matrix.exe 10 3 4
+./matrix.exe 10 3 5
+./matrix.exe 10 3 6
+./matrix.exe 10 3 7
+./matrix.exe 10 3 8
+./matrix.exe 10 3 9
+./matrix.exe 10 3 10
+
